@@ -1,0 +1,80 @@
+#footer {
+    width: 100vw;
+    height: 5vh;
+    background-color: rgba(255,0,0,0);
+    opacity: 1;
+    transition: all 1s;
+}
+
+#footer:hover {
+    opacity: 1;
+}
+
+#footer-bordered {
+    display: flex;
+    border-top: .1vh solid rgb(225,225,225);
+    width: 100vw;
+    height: 5vh;
+}
+
+.footer-container {
+    width: 10vw;
+    height: 5vh;
+}
+
+.footer-container img {
+    transition: all 1s;
+    width: 10vw;
+    height: 5vh;
+}
+
+.footer-container input {
+    border: none;
+    width: 10vw;
+    height: 4vh;
+    border-radius: 5vh;
+    position: relative;
+    top: .5vh;
+}
+
+.button-slide {
+    transition: all 1s;
+    width: 3vh;
+    height: 3vh;
+    position: relative;
+    top: -3vh;
+    left: .5vw;
+    border-radius: 3vh;
+}
+
+#left-theme {
+    background-color: rgb(255,255,255);
+    left: 0.5vw;
+}
+
+#right-theme {
+    background-color: rgb(0,0,0);
+    left: 8vw;
+}
+
+#left-hide {
+    background-color: var(--button-slider-color);
+    left: 0.5vw;
+}
+
+#right-hide {
+    background-color: var(--button-slider-color);
+    left: 8vw;
+}
+
+.img-light {
+    opacity: var(--light-opacity);
+    position: absolute;
+    z-index: 4;
+}
+
+.img-dark {
+    opacity: var(--dark-opacity);
+    position: absolute;
+    z-index: 6;
+}

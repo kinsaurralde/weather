@@ -1,0 +1,196 @@
+/* CSS File for main section */
+/* Values with "Original Value:" comment were converted from vh to vw */ 
+/* Formula used: (new value)vw = (old value)vh * (9 / 16) * ( (1920 / 1080) / (1536 / 754) )*/
+/* Simplified: (new value)vw = (old value)vh * 754 / 1536 */
+
+html {
+    --dark-opacity: 0;
+    --light-opacity: 1;
+    --button-slider-color: rgb(255,255,255);
+    --button-color: rgb(225,225,225);
+    --show-layout-TESTING: 0;
+  }
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    transition: all 1s;
+}
+
+#light-theme input{
+    transition: all 1s;
+    background-color: rgb(225,225,225);
+    background-color: var(--button-color);
+    color: rgb(0,0,0);
+}
+
+#dark-theme input {
+    transition: all 1s;
+    background-color: rgb(30,30,30);
+    background-color: var(--button-color);
+    color: rgb(255,255,255);
+}
+
+
+#main-time, #coords, #city {
+    position: absolute;
+    top: 0vh; /* KEEP IN VH */
+    text-align: center;
+    font-size: 5.3997vw; /* Original Value: 11vh */
+    height: 5.8906vw; /* Original Value: 12vh */
+    position: relative;
+    top: 0vw; /* Original Value: 0vh */
+    background-color: rgba(255, 0,0, var(--show-layout-TESTING)); /* LAYOUT */
+}
+
+#coords {
+    font-size: 2.9453vw; /* Original Value: 6vh */
+    line-height: 1.9635vw; /* Original Value: 4vh */
+}
+
+#coords:hover {
+    font-size: 3.9271vw;
+}
+
+#main-time:hover {
+    font-size: 5.8906vw; /* Original Value: 12vh */
+}
+
+#city:hover {
+    transition: font-size 0s;
+    font-size: 3vw;
+}   
+
+.strip {
+    position: absolute;
+    top: 12vh; /* KEEP IN VH */
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 24.5443vw; /* Original Value: 50vh */
+    background-color: rgb(0,255,0,var(--show-layout-TESTING)); /* LAYOUT */
+    transition: top 1s;
+}
+
+.container {
+    width: 30vw;
+    height: 22.0898vw; /* Original Value: 45vh */
+    margin-left: 1vw;
+    margin-right: 1vw;
+    position: relative;
+    top: 0.9818vw; /* Original Value: 2vh */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgb(255,255,0,var(--show-layout-TESTING));
+}
+
+.main-top-box {
+    width: 8vw;
+    height: 5.8906vw; /* Original Value: 12vh */
+    margin: .5vw;
+    background-color: rgb(0,255,255,var(--show-layout-TESTING)); /* LAYOUT */
+}
+
+.main-temp-box {
+    width: 26vw;
+    height: 11.7813vw; /* Original Value: 24vh */
+    background-color: rgb(255,0,255,var(--show-layout-TESTING)); /* LAYOUT */
+}
+
+.thin-box {
+    height: 1.4727vw; /* Original Value: 3vh */
+    width: 26vw;
+    background-color: rgba(0,0,255,var(--show-layout-TESTING)); /* LAYOUT */
+}
+
+.thin-text {
+    text-align: center;
+    transition: font-size .5s;
+    font-size: 1.4727vw; /* Original Value: 3vh */
+}
+
+.thin-text:hover {
+    font-size: 1.9635vw; /* Original Value: 4vh */
+}
+
+.big-number {
+    position: relative;
+    top: -1.9635vw; /* Original Value: -4vh */
+    font-size: 13.7448vw; /* Original Value: 28vh */
+    text-align: center;
+    transition: font-size .5s;
+}
+
+.big-number:hover {
+    font-size: 14.7266vw; /* Original Value: 30vh */
+}
+
+.medium-text {
+    font-size: 2.4544vw; /* Original Value: 5vh */
+    text-align: center;
+    position: relative;
+    top: 1.4727vw; /* Original Value: 3vh */
+    transition: font-size .5s;
+}
+
+.medium-text:hover {
+    font-size: 2.9453vw; /* Original Value: 6vh */
+}
+
+.biggest-icon {
+    width: 10vw;
+    height: 10.7995vw; /* Original Value: 22vh */
+    position: relative;
+    top: 2.9453vw; /* Original Value: 6vh */
+    transition: all .5s;
+}
+
+.big-icon {
+    background-color: rgba(0,0,255,0);
+    width: 5vw;
+    height: 5vw;
+    position: relative;
+    left: 1.5vw;
+    transition: all .5s;
+}
+
+.big-icon:hover {
+    width: 6vw;
+    height: 5.8906vw; /* Original Value: 12vh */
+}
+
+.small-icon {
+    background-color: rgba(0,0,255,0);
+    width: 4vw;
+    height: 4vw;
+    position: relative;
+    transition: all .5s;
+}
+
+.overlay {
+    position: relative;
+    top: -3.9271vw; /* Original Value: -8vh */
+    font-size: 2.4544vw; /* Original Value: 5vh */
+    text-align: center;
+}
+
+.overlay:hover {
+    font-size: 2.9453vw; /* Original Value: 6vh */
+}
+
+.raindrop {
+    width: 8vw;
+    height: 5.8906vw; /* Original Value: 12vh */
+}
+
+#topbar {
+    display: flex;
+    justify-content: center;
+}
+
+.top-box {
+    width: 33vw;
+    transition: font-size .5s;
+}
