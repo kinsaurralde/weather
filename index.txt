@@ -1,0 +1,646 @@
+<html>
+
+<head>
+
+    <title>Weather</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Kyle Insaurralde">
+    <meta name="description" content="Display weather data at current location">
+    
+    <link rel="icon" href="images/icon.png">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="stylesheet" href="css/secondary.css" type="text/css">
+    <link rel="stylesheet" href="css/footer.css" type="text/css">
+
+    <script src="js/weather.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="skycons/skycons.js"></script>
+
+</head>
+
+<body>
+
+    <div id="topbar">
+        <div id="main-time" class="top-box"></div>
+        <div id="city" class="top-box" onmouseover="locationDisplay('full')" onmouseout="locationDisplay('city')"></div>
+        <div id="coords" class="top-box"></div>
+    </div>
+
+    <div class="strip" id="daily">
+
+        <div class="container">
+
+            <div class="main-top-box">
+                <div id="low-temp-text-box" class="medium-text">Low</div>
+            </div>
+
+            <div class="main-top-box">
+                <canvas id="low-icon" class="big-icon" width="128" height="128"></canvas>
+            </div>
+
+            <div class="main-top-box">
+
+            </div>
+
+            <div class="main-temp-box">
+                <div id="low-temp" class="big-number">
+                    <canvas id="load-low" class="biggest-icon" width="128" height="128"></canvas>
+                    <!--  LOADING  -->
+                </div>
+            </div>
+
+            <div class="thin-box">
+                <div id="low-time" class="thin-text">
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="container">
+
+            <div class="main-top-box">
+
+            </div>
+
+            <div class="main-top-box">
+                <canvas id="current-icon" class="big-icon" width="128" height="128"></canvas>
+            </div>
+
+            <div class="main-top-box">
+                <img src="images/raindrop.png" class="raindrop">
+                <div class="overlay" id="rain-chance"></div>
+            </div>
+
+            <div class="main-temp-box">
+                <div id="current-temp" class="big-number">
+                    <canvas id="load-current" class="biggest-icon" width="128" height="128"></canvas>
+                    <!--  LOADING  -->
+                </div>
+            </div>
+
+            <div class="thin-box">
+                <div id="current-time" class="thin-text">
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="container">
+
+            <div class="main-top-box">
+
+            </div>
+
+            <div class="main-top-box">
+                <canvas id="high-icon" class="big-icon" width="128" height="128"></canvas>
+            </div>
+
+            <div class="main-top-box">
+                <div id="high-temp-text-box" class="medium-text">High</div>
+            </div>
+
+            <div class="main-temp-box">
+                <div id="high-temp" class="big-number">
+                    <canvas id="load-high" class="biggest-icon" width="128" height="128"></canvas>
+                    <!--  LOADING  -->
+                </div>
+            </div>
+
+            <div class="thin-box">
+                <div id="high-time" class="thin-text">
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="light-theme">
+
+        <div class="strip" id="secondary">
+
+            <div id="container-0" class="secondary-container">
+
+            </div>
+
+            <div id="container-1" class="secondary-container">
+
+                <div class="secondary-box" id="d-1" onmouseover="dailyExpand(1)" onmouseout="dailyExpand(0)">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-day-1" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="d-l-1"></div>
+                    <div class="secondary-innerbox-mid" id="d-h-1"></div>
+                    <div class="secondary-innerbox-thin" id="date-day-1"></div>
+                </div>
+
+
+                <div class="secondary-box" id="d-2" onmouseover="dailyExpand(2)" onmouseout="dailyExpand(0)">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-day-2" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="d-l-2"></div>
+                    <div class="secondary-innerbox-mid" id="d-h-2"></div>
+                    <div class="secondary-innerbox-thin" id="date-day-2"></div>
+                </div>
+
+
+                <div class="secondary-box" id="d-3" onmouseover="dailyExpand(3)" onmouseout="dailyExpand(0)">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-day-3" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="d-l-3"></div>
+                    <div class="secondary-innerbox-mid" id="d-h-3"></div>
+                    <div class="secondary-innerbox-thin" id="date-day-3"></div>
+                </div>
+
+
+                <div class="secondary-box" id="d-4" onmouseover="dailyExpand(4)" onmouseout="dailyExpand(0)">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-day-4" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="d-l-4"></div>
+                    <div class="secondary-innerbox-mid" id="d-h-4"></div>
+                    <div class="secondary-innerbox-thin" id="date-day-4"></div>
+                </div>
+
+
+                <div class="secondary-box" id="d-5" onmouseover="dailyExpand(5)" onmouseout="dailyExpand(0)">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-day-5" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="d-l-5"></div>
+                    <div class="secondary-innerbox-mid" id="d-h-5"></div>
+                    <div class="secondary-innerbox-thin" id="date-day-5"></div>
+                </div>
+
+
+                <div class="secondary-box" id="d-6" onmouseover="dailyExpand(6)" onmouseout="dailyExpand(0)">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-day-6" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="d-l-6"></div>
+                    <div class="secondary-innerbox-mid" id="d-h-6"></div>
+                    <div class="secondary-innerbox-thin" id="date-day-6"></div>
+                </div>
+
+
+                <div class="secondary-box" id="d-7" onmouseover="dailyExpand(7)" onmouseout="dailyExpand(0)">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-day-7" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="d-l-7"></div>
+                    <div class="secondary-innerbox-mid" id="d-h-7"></div>
+                    <div class="secondary-innerbox-thin" id="date-day-7"></div>
+                </div>
+
+            </div>
+
+
+            <div id="container-2" class="secondary-container">
+                
+                <div class="secondary-box">
+
+                </div>
+
+                <div class="secondary-box-med">
+                    <div class="secondary-innerbox-med" id="low-temp-day-1">
+
+                    </div>
+                    <div class="secondary-innerbox-thin-med" id="low-time-day-1"></div>
+                </div>
+                <div class="secondary-box">
+
+                </div>
+                <div class="secondary-box-med">
+                    <canvas id="icon-day1" class="bigger-icon" width="128" height="128"></canvas>
+                    <div class="secondary-innerbox-thin-med" id="next-day-date"></div>
+                </div>
+                <div class="secondary-box">
+
+                </div>
+                <div class="secondary-box-med">
+                    <div class="secondary-innerbox-med" id="high-temp-day-1">
+
+                    </div>
+                    <div class="secondary-innerbox-thin-med" id="high-time-day-1"></div>
+                </div>
+                <div class="secondary-box">
+
+                </div>
+
+            </div>
+
+
+            <div id="container-3" class="secondary-container">
+
+                <div class="secondary-box" id="h-0">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-0" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-0"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-0"></div>
+                </div>
+
+                <div class="secondary-box" id="h-1">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-1" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-1"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-1"></div>
+                </div>
+
+                <div class="secondary-box" id="h-2">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-2" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-2"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-2"></div>
+                </div>
+
+                <div class="secondary-box" id="h-3">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-3" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-3"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-3"></div>
+                </div>
+
+                <div class="secondary-box" id="h-4">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-4" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-4"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-4"></div>
+                </div>
+
+                <div class="secondary-box" id="h-5">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-5" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-5"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-5"></div>
+                </div>
+
+                <div class="secondary-box" id="h-6">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-6" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-6"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-6"></div>
+                </div>
+
+                <div class="secondary-box" id="h-7">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-7" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-7"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-7"></div>
+                </div>
+
+            </div>
+
+
+            <div id="container-4" class="secondary-container">
+
+                <div class="secondary-box" id="h-8">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-8" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-8"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-8"></div>
+                </div>
+
+                <div class="secondary-box" id="h-9">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-9" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-9"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-9"></div>
+                </div>
+
+                <div class="secondary-box" id="h-10">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-10" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-10"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-10"></div>
+                </div>
+
+                <div class="secondary-box" id="h-11">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-11" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-11"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-11"></div>
+                </div>
+
+                <div class="secondary-box" id="h-12">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-12" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-12"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-12"></div>
+                </div>
+
+                <div class="secondary-box" id="h-13">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-13" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-13"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-13"></div>
+                </div>
+
+                <div class="secondary-box" id="h-14">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-14" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-14"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-14"></div>
+                </div>
+
+                <div class="secondary-box" id="h-15">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-15" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-15"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-15"></div>
+                </div>
+
+            </div>
+
+
+            <div id="container-5" class="secondary-container">
+
+                <div class="secondary-box" id="h-16">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-16" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-16"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-16"></div>
+                </div>
+
+                <div class="secondary-box" id="h-17">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-17" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-17"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-17"></div>
+                </div>
+
+                <div class="secondary-box" id="h-18">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-18" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-18"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-18"></div>
+                </div>
+
+                <div class="secondary-box" id="h-19">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-19" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-19"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-19"></div>
+                </div>
+
+                <div class="secondary-box" id="h-20">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-20" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-20"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-20"></div>
+                </div>
+
+                <div class="secondary-box" id="h-21">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-21" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-21"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-21"></div>
+                </div>
+
+                <div class="secondary-box" id="h-22">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-22" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-22"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-22"></div>
+                </div>
+
+                <div class="secondary-box" id="h-23">
+                    <div class="secondary-innerbox-top">
+                        <canvas id="icon-hour-23" class="small-icon" width="128" height="128"></canvas>
+                    </div>
+                    <div class="secondary-innerbox-mid" id="h-t-23"></div>
+                    <div class="secondary-innerbox-thin" id="date-hour-23"></div>
+                </div>
+
+            </div>
+
+
+            <div id="container-6" class="secondary-container">
+
+            </div>
+
+
+            <div id="container-7" class="secondary-container">
+
+            </div>
+
+
+        </div>
+
+        <div id="scroll">
+            <input type="range" min="0" max="5" id="scroll-bar" value="1" oninput="page(value)">
+            <div class="overlay-scroll" style="text-align:left;">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                Blank
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                Daily
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                Next Day
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                Next 0-7 Hours
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                Next 8-15 Hours
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                Next 16-23 Hours
+            </div>
+        </div>
+
+
+        <div id="footer" onmouseover="hover(true)" onmouseout="hover(false)">
+
+            <div class="footer-row">
+
+                <div id="darksky" class="footer-container">
+                    <a href="https://darksky.net/poweredby/"><img src="images/darksky-light.png" class="img-light"></a>
+                    <a href="https://darksky.net/poweredby/"><img src="images/darksky-dark.png" class="img-dark"></a>
+                </div>
+
+                <div class="footer-container">
+                    <a href="https://darkskyapp.github.io/skycons/"><input type="button" value="Skycons" style="background-color: transparent"></a>
+                </div>
+
+                <div id="theme" class="footer-container">
+                    <input type="button" value="Light   Dark" onclick="lightDark()">
+                    <div id="left-theme" class="button-slide" onclick="lightDark()"></div>
+                </div>
+
+                <div class="footer-container">
+                    <input type="button" value="Fullscreen" onclick="fullScreen()">
+                </div>
+
+                <div class="footer-container">
+                    <input type="button" value="&#x2b9d" id="arrow-1" onclick="footerDisplayToggle()">
+                </div>
+
+                <div class="footer-container">
+                    <input type="button" value="&#x2b9d" id="arrow-2" onclick="footerDisplayToggle()">
+                </div>
+
+                <div class="footer-container">
+                    <input type="button" value="Refresh" onclick="refresh()">
+                </div>
+
+                <div id="auto-hide" class="footer-container">
+                    <input type="button" value="Hide   Show" onclick="showFooter()">
+                    <div id="right-hide" class="button-slide"></div>
+                </div>
+
+                <div class="footer-container">
+                    <a href="https://github.com/kinsaurralde/website/tree/weather"><input type="button" value="Site Code" style="background-color: transparent"></a>
+                </div>
+
+                <div id="kinsaurralde" class="footer-container">
+                    <a href="https://kinsaurralde.com"><img src="images/kinsaurralde-light.png" class="img-light"></a>
+                    <a href="https://kinsaurralde.com"><img src="images/kinsaurralde-dark.png" class="img-dark"></a>
+                </div>
+
+            </div>
+
+            <div class="footer-row" id="footer-row-1">
+
+                <div id="" class="footer-container">
+
+                </div>
+
+                <div id="" class="footer-container">
+
+                </div>
+
+                <div id="" class="footer-container">
+
+                </div>
+
+                <div id="" class="footer-container">
+
+                </div>
+
+                <div id="" class="footer-container">
+                    <input type="button" value="Latitude" style="background-color: transparent">
+                </div>
+
+                <div id="" class="footer-container">
+                    <input type="button" value="Longitude" style="background-color: transparent">
+                </div>
+
+                <div id="" class="footer-container">
+             
+                </div>
+
+                <div id="" class="footer-container">
+
+                </div>
+
+                <div id="" class="footer-container">
+
+                </div>
+
+                <div id="" class="footer-container">
+
+                </div>
+
+            </div>
+
+            <div class="footer-row" id="footer-row-2">
+
+                <div id="" class="footer-container">
+                    <input type="button" value="Benicia" onclick="presetLocation('benicia')">
+                </div>
+
+                <div id="" class="footer-container">
+                    <input type="button" value="Davis" onclick="presetLocation('davis')">
+                </div>
+
+                <div id="" class="footer-container">
+                    <input type="button" value="Active Icon" onclick="toggleIcons()">
+                    <div id="left-active" class="button-slide" onclick="toggleIcons()"></div>
+                </div>
+
+                <div id="" class="footer-container">
+                    <input type="button" value="Current Location" onclick="getLocation()">
+                </div>
+
+                <div class="footer-container">
+                    <input type="number" value="123" class="text-input" id="latitude" style="border: 2px solid var(--button-color); background-color: transparent;">
+                </div>
+
+                <div class="footer-container">
+                    <input type="number" value="345" class="text-input" id="longitude" style="border: 2px solid var(--button-color); background-color: transparent;">
+                </div>
+
+                <div id="" class="footer-container">
+                    <input type="button" value="Update" onclick="newLocation()">
+                </div>
+
+                <div id="" class="footer-container">
+                    <input type="button" value="" onclick="">
+                </div>
+
+                <div id="" class="footer-container">
+                    <input type="button" value="" onclick="">
+                </div>
+
+                <div id="" class="footer-container">
+                    <input type="button" value="" onclick="">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        var mainTime = document.getElementById('main-time');
+        var city = "", address = "";
+        var coords = document.getElementById('coords');
+        var light = true;
+        var autoHide = false;
+        var skycons;
+        var footerExpanded = false;
+        var latitude, longitude;
+
+        initial();
+
+        getLocation();
+
+        function update() {
+            //getJSON("http://localhost:4000/data.json"); //  Test
+            getJSON("https://gmcw3wwp10.execute-api.us-west-1.amazonaws.com/prod?coords="+latitude+","+longitude); // Real
+        }
+
+    </script>
+
+</body>
+
+</html>
